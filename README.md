@@ -270,5 +270,8 @@ PHP_Laravel12_Short_Schedular
 ---
 
 Your PHP_Laravel12_Short_Schedular Project is now ready!
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> development
