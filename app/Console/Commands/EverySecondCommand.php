@@ -12,10 +12,27 @@ class EverySecondCommand extends Command
 
     public function handle()
     {
-        Log::create([
-            'message' => 'Executed at ' . now()
-        ]);
+        try {
+            // Simulate random failure
+            if (rand(1, 5) === 3) {
+                throw new \Exception('Random failure occurred');
+            }
 
-        $this->info('Command executed at ' . now());
+            Log::create([
+                'message' => 'Executed at ' . now(),
+                'status' => 'success'
+            ]);
+
+            $this->info('Success at ' . now());
+
+        } catch (\Exception $e) {
+
+            Log::create([
+                'message' => $e->getMessage(),
+                'status' => 'failed'
+            ]);
+
+            $this->error('Failed: ' . $e->getMessage());
+        }
     }
 }
