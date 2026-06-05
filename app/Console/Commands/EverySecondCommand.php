@@ -13,7 +13,6 @@ class EverySecondCommand extends Command
     public function handle()
     {
         try {
-            // Simulate random failure
             if (rand(1, 5) === 3) {
                 throw new \Exception('Random failure occurred');
             }
@@ -26,7 +25,6 @@ class EverySecondCommand extends Command
             $this->info('Success at ' . now());
 
         } catch (\Exception $e) {
-
             Log::create([
                 'message' => $e->getMessage(),
                 'status' => 'failed'
